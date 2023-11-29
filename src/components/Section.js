@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 const Wrap = styled.div`
   width: 100vw;
@@ -22,7 +23,7 @@ const ItemText = styled.div`
   font-weight: 600;
 `;
 
-const ButtonGroup = styled.div`
+const ButtonGroup = styled(motion.div)`
   display: flex;
   margin-bottom: 30px;
   @media (max-width: 768px) {
@@ -39,17 +40,21 @@ const LeftButton = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 100px;
-  opacity: 0.85;
+  opacity: 0.9;
   text-transform: uppercase;
   font-size: 12px;
   cursor: pointer;
   margin: 8px;
 `;
+
+const AnimatedButton = motion(LeftButton);
+
 const RightButton = styled(LeftButton)`
   background-color: white;
   opacity: 0.65;
   color: black;
 `;
+const AnimatedRButton = motion(RightButton);
 
 const DownArrow = styled.img`
   margin-top: 20px;
@@ -71,14 +76,37 @@ function Section({
     // changing the bckImage
     <Wrap bgImage={backgroundImg}>
       <ItemText>
-        <h1>{title}</h1>
-        <p>{description}</p>
+        <motion.h1
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 1.5 }}
+        >
+          {title}
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.9 }}
+          transition={{ delay: 1, duration: 1.5 }}
+        >
+          {description}
+        </motion.p>
       </ItemText>
       <Buttons>
-        <ButtonGroup>
-          <LeftButton>{leftBtnText}</LeftButton>
-          {rightBtnText && <RightButton>{rightBtnText}</RightButton>}
-        </ButtonGroup>
+        <motion.ButtonGroup
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 1.5 }}
+        >
+          <AnimatedButton whileHover={{ scale: 1.1 }}>
+            {leftBtnText}
+          </AnimatedButton>
+
+          {rightBtnText && (
+            <AnimatedRButton whileHover={{ scale: 1.1 }}>
+              {rightBtnText}
+            </AnimatedRButton>
+          )}
+        </motion.ButtonGroup>
         <DownArrow src="/images/down-arrow1.png" />
       </Buttons>
     </Wrap>

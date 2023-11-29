@@ -1,11 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 const Container = styled.div`
   min-height: 60px;
   position: fixed;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   margin: 0 20 px;
   top: 0; //expand the header to full width
   left: 0;
@@ -23,6 +25,10 @@ const Menu = styled.div`
     color: #393c41;
     padding: 0 20px;
     flex-wrap: nowrap;
+  }
+
+  @media (max-width: 768px) {
+    display: none;
   }
 `;
 
@@ -49,21 +55,72 @@ const CustomMenu = styled.div`
 function Header() {
   return (
     <Container>
-      <a>
+      <motion.a
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ delay: 0.2, type: "spring", stiffness: 20 }}
+      >
         <img src="/images/logo.svg" alt="" />
-      </a>
+      </motion.a>
       <Menu>
-        <a href="#">Model S</a>
-        <a href="#">Model Y</a>
-        <a href="#">Model 3</a>
-        <a href="#">Model X</a>
+        <motion.a
+          href="#"
+          initial={{ y: -100 }}
+          animate={{ y: 0 }}
+          transition={{ delay: 0.2, type: "spring", stiffness: 20 }}
+        >
+          Model S
+        </motion.a>
+        <motion.a
+          href="#"
+          initial={{ y: -100 }}
+          animate={{ y: 0 }}
+          transition={{ delay: 0.2, type: "spring", stiffness: 20 }}
+        >
+          Model Y
+        </motion.a>
+        <motion.a
+          href="#"
+          initial={{ y: -100 }}
+          animate={{ y: 0 }}
+          transition={{ delay: 0.2, type: "spring", stiffness: 20 }}
+        >
+          Model 3
+        </motion.a>
+        <motion.a
+          href="#"
+          initial={{ y: -100 }}
+          animate={{ y: 0 }}
+          transition={{ delay: 0.2, type: "spring", stiffness: 20 }}
+        >
+          Model X
+        </motion.a>
       </Menu>
       <RightMenu>
-        <a href="#">Shop</a>
-        <a href="#">Tesla Account</a>
+        <motion.a
+          href="#"
+          initial={{ y: -100 }}
+          animate={{ y: 0 }}
+          transition={{ delay: 0.2, type: "spring", stiffness: 20 }}
+        >
+          Shop
+        </motion.a>
+        <motion.a
+          href="#"
+          initial={{ y: -100 }}
+          animate={{ y: 0 }}
+          transition={{ delay: 0.2, type: "spring", stiffness: 20 }}
+        >
+          Tesla Account
+        </motion.a>
       </RightMenu>
       <CustomMenu>
-        <i class="bi-list"></i>
+        <motion.i
+          class="bi-list"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 1.5 }}
+        ></motion.i>
       </CustomMenu>
     </Container>
   );
